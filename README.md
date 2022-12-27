@@ -126,7 +126,14 @@ Adicional a ello se tienen dos procesos de busqueda de album y artista, y tambie
 
 <hr>
 
+## **--- ATENCION ---**
+## Para ingresar a la documentacion de Swagger con interfaz grafica abrir cualquiera de los siguientes endpoints:
+- http://127.0.0.1:8000/api/schema/swagger-ui/
+- http://127.0.0.1:8000/api/schema/redoc/
 
+Asi mismo se adjunto una archivo para ser importado desde [POSTMAN](https://www.postman.com/) para probar cada uno de los endpoints desde alli.
+
+<hr>
 
 ## **DISCLAIMER**
 Se ha usado [drf-spectacular](https://drf-spectacular.readthedocs.io) como integracion de OpenAPI para el proyecto actual, el cual permite realizar la autenticacion en la capa de interfaz generada, se han testeado todos los modulos de manera satisfactoria; sin embargo, el logout "no funciona" debido a que el tema del token se maneja a nivel de base de datos (sesion), lo cual al parecer la herramienta no soporta dicha funcion.
