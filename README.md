@@ -131,7 +131,7 @@ Adicional a ello se tienen dos procesos de busqueda de album y artista, y tambie
 - http://127.0.0.1:8000/api/schema/swagger-ui/
 - http://127.0.0.1:8000/api/schema/redoc/
 
-Asi mismo se adjunto una archivo para ser importado desde [POSTMAN](https://www.postman.com/) para probar cada uno de los endpoints desde alli.
+Asi mismo se adjunto un archivo para ser importado desde [POSTMAN](https://www.postman.com/) para probar cada uno de los endpoints desde alli.
 
 <hr>
 
