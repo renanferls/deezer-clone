@@ -1,7 +1,6 @@
 from django.contrib.auth import authenticate
 from drf_spectacular.types import OpenApiTypes
-from drf_spectacular.utils import (OpenApiExample, OpenApiParameter,
-                                   extend_schema)
+from drf_spectacular.utils import OpenApiExample, OpenApiParameter, extend_schema
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -10,8 +9,11 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework_simplejwt.tokens import RefreshToken
 
 from .renderes import UserRenderer
-from .serializers import (UserLoginSerializer, UserProfileSerializer,
-                          UserRegistrationSerializer)
+from .serializers import (
+    UserLoginSerializer,
+    UserProfileSerializer,
+    UserRegistrationSerializer,
+)
 
 
 # Generate Token Manually
@@ -28,8 +30,7 @@ class UserRegistrationView(APIView):
     renderer_classes = [UserRenderer]
 
     @extend_schema(
-            request = UserRegistrationSerializer,
-            responses = UserRegistrationSerializer
+        request=UserRegistrationSerializer, responses=UserRegistrationSerializer
     )
     def post(self, request, format=None):
         serializer = UserRegistrationSerializer(data=request.data)
@@ -46,10 +47,7 @@ class UserLoginView(APIView):
 
     renderer_classes = [UserRenderer]
 
-    @extend_schema(
-        request = UserLoginSerializer,
-        responses = UserLoginSerializer
-    )
+    @extend_schema(request=UserLoginSerializer, responses=UserLoginSerializer)
     def post(self, request, format=None):
         serializer = UserLoginSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -72,10 +70,8 @@ class UserLoginView(APIView):
 class UserProfileView(APIView):
     renderer_classes = [UserRenderer]
     permission_classes = [IsAuthenticated]
-    @extend_schema(
-        request = UserProfileSerializer,
-        responses = UserProfileSerializer
-    )
+
+    @extend_schema(request=UserProfileSerializer, responses=UserProfileSerializer)
     def get(self, request, format=None):
         serializer = UserProfileSerializer(request.user)
         return Response(serializer.data, status=status.HTTP_200_OK)
@@ -84,9 +80,10 @@ class UserProfileView(APIView):
 class LogoutView(APIView):
     renderer_classes = [UserRenderer]
     permission_classes = [IsAuthenticated]
+
     @extend_schema(
-        request = None,
-        responses = None
+        request=None,
+        # responses = None
     )
     def post(self, request):
 
@@ -94,18 +91,11 @@ class LogoutView(APIView):
         response = JWT_authenticator.authenticate(request)
         if response is not None:
             # unpacking
-            user , token = response
-                
-        try:            
+            user, token = response
+
+        try:
             token = RefreshToken.for_user(user)
             token.blacklist()
-            return Response({
-                        'message': 'Successful logout'
-                    },
-                    status=status.HTTP_205_RESET_CONTENT
-                )
+            return Response({"message": "Successful logout"}, status=status.HTTP_200_OK)
         except Exception as e:
-            return Response({
-                "error": str(e)
-            },
-                status=status.HTTP_400_BAD_REQUEST)
+            return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)

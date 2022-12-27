@@ -1,14 +1,17 @@
 from drf_spectacular.utils import OpenApiParameter, extend_schema
 from rest_framework import status
-from rest_framework.generics import (ListCreateAPIView,
-                                     RetrieveUpdateDestroyAPIView)
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from .models import album, artist, genre, track
-from .serializers import (AlbumSerializer, ArtistSerializer, GenreSerializer,
-                          TrackSerializer)
+from .serializers import (
+    AlbumSerializer,
+    ArtistSerializer,
+    GenreSerializer,
+    TrackSerializer,
+)
 from .utils import to_json
 
 """
@@ -119,7 +122,9 @@ class track_ReadUpdateDelete(RetrieveUpdateDestroyAPIView):
 
 
 class queryArtist(APIView):
-    @extend_schema(request=None)
+    @extend_schema(
+        request=None,
+    )
     def get(self, request, pk):
         try:
             query_artist = artist.objects.get(id=pk)
