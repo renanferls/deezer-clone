@@ -32,7 +32,7 @@ Proyecto que forma parte del reto tecnico de [Silabuz](https://www.silabuz.com/)
 
 ## Autor <a name = "autor"></a>
 
-- [@renanfer14.ls](https://gitlab.com/renanfer14.ls)
+- [@renanferls](https://github.com/renanferls)
 
 ## Prerequisitos <a name = "prerequisitos"></a>
 
